@@ -1,0 +1,37 @@
+
+# Detect shell and apply matching settings
+if [ -n "$BASH_VERSION" ]; then
+  export PS1="\u@\h \W $ "
+  HISTSIZE=5000
+  HISTFILESIZE=5000
+  HISTCONTROL=ignorespace:ignoredups:erasedups
+  shopt -s histappend
+elif [ -n "$ZSH_VERSION" ]; then
+  PROMPT="%n@%m %1~ $ "
+  HISTSIZE=5000
+  SAVEHIST=5000
+  setopt HIST_IGNORE_SPACE
+  setopt HIST_IGNORE_DUPS
+  setopt HIST_IGNORE_ALL_DUPS
+  setopt APPEND_HISTORY
+  setopt INTERACTIVE_COMMENTS
+fi
+
+
+###############
+### Aliases ###
+###############
+alias his=" history"
+alias cl=" clear"
+
+alias t="terraform"
+alias k="kubectl"
+alias d="docker"
+
+alias python="python3"
+alias pip="pip3"
+
+alias lsl="ls -l"
+alias lsla="ls -la"
+
+alias dush="du -sh *"
