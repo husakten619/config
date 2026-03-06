@@ -1,33 +1,48 @@
-
 # Detect shell and apply matching settings
 if [ -n "$BASH_VERSION" ]; then
+  echo "bash"
+  alias his=" history"
   PS1="\u@\h \W $ "
   HISTSIZE=5000
   HISTFILESIZE=5000
   HISTCONTROL=ignorespace:ignoredups:erasedups
   shopt -s histappend
 elif [ -n "$ZSH_VERSION" ]; then
+  echo "zsh"
+  alias his=" history 1"
   PROMPT="%n@%m %1~ $ "
   HISTSIZE=5000
   SAVEHIST=5000
-  setopt HIST_IGNORE_SPACE HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS APPEND_HISTORY INTERACTIVE_COMMENTS
+  setopt HIST_IGNORE_SPACE HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS APPEND_HISTORY INTERACTIVE_COMMENTS INC_APPEND_HISTORY SHARE_HISTORY
 fi
 
 
 ###############
 ### Aliases ###
 ###############
-alias his=" history"
+alias c=" clear"
 alias cl=" clear"
 
 alias t="terraform"
 alias k="kubectl"
 alias d="docker"
+alias dc="docker compose"
 
+alias py="python3"
 alias python="python3"
 alias pip="pip3"
 
-alias lsl="ls -l"
-alias lsla="ls -la"
+alias ll="ls -l"
+alias lla="ls -la"
 
 alias dush="du -sh *"
+
+################
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/hakten/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
